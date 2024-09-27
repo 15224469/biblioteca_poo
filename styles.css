@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Para preencher a altura total da viewport */
+    background-image: url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/24/aa/38/ba/salone-monumentale-arcidiacono.jpg?w=1200&h=-1&s=1');
+    background-size: cover; /* Faz com que a imagem cubra toda a área */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; 
+}
+
+header {
+    background-color: rgb(105, 76, 57);
+   height: 300px;
+   width: 900px;
+   position: absolute; 
+   top: 40%; 
+   left: 50%; 
+   transform: translate(-50%, -50%); 
+   box-shadow: 5px 5px 6px;
+   border-radius: 20px;
+   padding: 10px;
+   align-items: center;
+}
+
+
+button {
+    
+        background-color: rgb(53, 33, 27);
+        color: rgb(255, 255, 255); 
+        border: 2px solid rgb(255, 255, 255); 
+        padding: 10px 20px;
+        font-size: 20px; 
+        font-family: 'Giorgia';
+        cursor: pointer; 
+        border-radius: 15px; 
+        transition: background-color 0.3s, color 0.3s; 
+        top: 6px;
+        align-items: center;
+}
+
+button:hover {
+    background-color: rgb(134, 87, 64);
+    color: rgb(0, 0, 0);
+}
+
+h1 {
+    color: aliceblue;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    border-color: black;
+    text-align: center;
+}

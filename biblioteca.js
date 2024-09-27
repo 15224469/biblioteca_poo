@@ -1,78 +1,81 @@
-class Livro{
-    constructor(Nome, Autor, Genero, Ano){
-        this.Nome = Nome;
-        this.Autor = Autor;
-        this.Genero = Genero;
-        this.Ano = Ano;
+class Livro {
+    constructor(titulo, autor, ano, genero) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.ano = ano;
+        this.genero = genero;
+    }
+
+    exibirInformacoes() {
+        return `${this.titulo} - ${this.autor} (${this.ano}) - ${this.genero}`;
     }
 }
 
-class Biblioteca{
-    Adicionarlivro (event) {
-        const Nome = document.getElementById('Nome').value;
-        const Autor = document.getElementById('Autor').value;
-        const Ano = document.getElementById('Ano').value;
-        const Genero = document.getElementById('Genero').value;
-
-        const Adicionarlivro = document.querySelector('Adicionarlivro')
-        Adicionarlivro.addEventListed('click',() => {
-        const sidebarContent = document.querySelector('.sidebarContent');
-            let Nome = parseFloat(document.querySelector('#Nome').value.replace(',', '.'));
-            let Autor = parseFloat(document.querySelector('#Autor').value.replace(',', '.'));
-            let Ano = parseFloat(document.querySelector('#Ano').value.replace(',', '.'));
-            let Genero = parseFloat(document.querySelector('#Genero').value.replace(',', '.'));
-        });     
+class Biblioteca {
+    constructor() {
+        this.livros = this.carregarLivros(); // Carrega livros do localStorage
     }
-}
-    Exibirlivro (); {
-        const acervoDiv = document.getElementById('acervo');
-        acervoDiv.innerHTML = ''; // Limpa a área antes de exibir
 
-        if (this.biblioteca.length === 0) {
-            acervoDiv.innerHTML = '<p> Biblioteca Vazia.</p>';
+    adicionarLivro(livro) {
+        this.livros.push(livro);
+        this.salvarLivros(); // Salva no localStorage
+        this.exibirLivros();
+    }
+
+    removerLivro(index) {
+        this.livros.splice(index, 1);
+        this.salvarLivros(); // Salva no localStorage
+        this.exibirLivros();
+    }
+
+    salvarLivros() {
+        localStorage.setItem('livros', JSON.stringify(this.livros));
+    }
+
+    carregarLivros() {
+        const livros = localStorage.getItem('livros');
+        return livros ? JSON.parse(livros) : [];
+    }
+
+    exibirLivros() {
+        const listaLivrosDiv = document.getElementById('listaLivros');
+        listaLivrosDiv.innerHTML = ''; // Limpa a lista antes de exibir
+
+        if (this.livros.length === 0) {
+            listaLivrosDiv.innerHTML = '<p>Biblioteca Vazia...</p>';
         } else {
-            this.biblioteca.forEach(livro => {
+            this.livros.forEach((livro, index) => {
                 const livroDiv = document.createElement('div');
                 livroDiv.className = 'livro';
                 livroDiv.innerHTML = `
-                    <strong>Nome:</strong> ${livro.Nome} <br>
-                    <strong>Autor:</strong> ${livro.Autor} <br>
-                    <strong>Ano:</strong> ${livro.Genero} <br>
-                    <strong>Gênero:</strong> ${livro.Ano} <br>
+                    <strong>Título:</strong> ${livro.titulo} <br>
+                    <strong>Autor:</strong> ${livro.autor} <br>
+                    <strong>Ano:</strong> ${livro.ano} <br>
+                    <strong>Gênero:</strong> ${livro.genero} <br>
+                    <button class="remover" onclick="biblioteca.removerLivro(${index})">Remover</button>
                     <hr>
                 `;
-                acervoDiv.appendChild(livroDiv);
+                listaLivrosDiv.appendChild(livroDiv);
             });
         }
     }
-
-    Removerlivro (Nome, Autor); {
-            const index = this.livros.findIndex(livro => livro.Nome === Nome && livro.Autor === Autor);
-            if (index === -1) {
-    
-            this.livro.splice(indice, 1);
-            localStorage.setItem('biblioteca', JSON.stringify(this.livro)); // Atualiza o localStorage
-            alert(`O livro "${Nome}" foi excluído do acervo.`);
-        } else {
-            alert(`O livro "${Nome}" não encontrado no acervo.`);
-        }
-    }
-
-    // Instancia a classe Biblioteca
-const livro = new Livro();
-
-// Funções que podem ser chamadas a partir do HTML
-function Adicionarlivro(event) {
-    livro.Adicionarlivro(event);
 }
 
-function Exibirlivro() {
-    livro.Exibirlivro();
-}
-function Removerlivro(event) {
-    event.preventDefault(); // Previne o envio do formulário
+// Inicializa a biblioteca
+const biblioteca = new Biblioteca();
+biblioteca.exibirLivros();
 
-    const livro = document.getElementById('tituloExcluir').value; // Obtém o título do livro
-    livro.Removerlivro(Nome, Autor); // Chama a função para excluir o livro
-    document.getElementById('formularioExcluir').reset(); // Limpa o formulário
-}
+// Adiciona evento ao formulário
+document.getElementById('formLivro').addEventListener('submit', function (e) {
+    e.preventDefault(); // Previne o comportamento padrão do formulário
+    const titulo = document.getElementById('titulo').value;
+    const autor = document.getElementById('autor').value;
+    const ano = document.getElementById('ano').value;
+    const genero = document.getElementById('genero').value;
+
+    const novoLivro = new Livro(titulo, autor, ano, genero);
+    biblioteca.adicionarLivro(novoLivro);
+
+    // Limpa os campos do formulário
+    this.reset();
+});

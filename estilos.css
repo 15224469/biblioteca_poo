@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Para preencher a altura total da viewport */
+    background-image: url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/24/aa/38/ba/salone-monumentale-arcidiacono.jpg?w=1200&h=-1&s=1');
+    image-rendering: 77%;
+    background-size: cover; /* Faz com que a imagem cubra toda a área */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; 
+}
+
+header {
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    position: relative;
+    color: aliceblue;
+}
+
+main {
+    color: aliceblue;
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 10px;
+}
+
+input {
+    margin: 10px 0; /* Espaço entre os campos */
+    padding: 10px; /* Espaço interno */
+    width: 200px; /* Largura do campo de entrada */
+    border-radius: 15px; /* Bordas arredondadas */
+    border: 2px solid #523721; /* Cor da borda */
+    font-size: 16px; /* Tamanho da fonte */
+    transition: border-color 0.3s; /* Transição suave para a cor da borda */
+}
+
+input:focus {
+    border-color: rgb(0, 0, 0); /* Cor da borda ao focar */
+    outline: none; /* Remove o contorno padrão */
+    box-shadow: 0 0 5px rgba(53, 33, 27, 0.5); /* Sombra ao focar */
+}
+
+input::placeholder {
+    color: #000000; /* Cor do texto do placeholder */
+    font-style: italic; /* Estilo do texto do placeholder */
+}
+
+button {
+    
+    background-color: rgb(53, 33, 27);
+    color: rgb(255, 255, 255); 
+    border: 2px solid rgb(255, 255, 255); 
+    padding: 10px 20px;
+    font-size: 15px; 
+    font-family: 'Giorgia';
+    cursor: pointer; 
+    border-radius: 15px; 
+    transition: background-color 0.3s, color 0.3s; 
+    top: 6px;
+    align-items: center;
+}
+
+button:hover {
+    background-color: rgb(134, 87, 64);
+    color: rgb(0, 0, 0);
+    }
+
+a {
+    background-color: rgb(53, 33, 27);
+    color: rgb(255, 255, 255); 
+    border: 2px solid rgb(255, 255, 255); 
+    padding: 10px 20px;
+    font-size: 15px; 
+    font-family: 'Giorgia';
+    cursor: pointer; 
+    border-radius: 15px; 
+    transition: background-color 0.3s, color 0.3s; 
+    top: 6px;
+    align-items: center;
+}
+
+a:hover {
+background-color: rgb(134, 87, 64);
+color: rgb(0, 0, 0);
+}
+
+p {
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
